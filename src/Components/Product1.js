@@ -1,31 +1,30 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import Category from './../shoes1.json';
-import { Link } from 'react-router-dom';
 
+import { Link } from 'react-router-dom';
+import Shoes1 from './../shoes1.json';
 
 
 
 function Product1() {
     const { id } = useParams();
-    const categ = Category[id];
-    console.log(categ)
-    if (!Category)
-        return <h2>Category Not Found!</h2>
-
+    console.log(id)
+    const categ = Shoes1[id];
+    // console.log(categ)
     return (
         <div>
-            <h1>Welcome to Product Item</h1>
+            <h1>Welcome to {id}</h1>
             <div className="productContainer">
-                {Object.keys(categ).map(keyName=>{
-                    const shoe = categ[keyName];
-                    return (  
-                        <Link key={keyName} 
-                            className="link" 
-                            to={`/product1/${keyName}`}>
-                                <h4>{shoe.name}</h4>
-                                <img src={shoe.img} height={150} alt="shoe" />
-                    </Link>)
+                {Object.keys(categ).map(keyName => {
+                    const shoes = categ[keyName];
+
+                    return (
+                        <Link key={keyName}
+                            className="link"
+                            to={`/product/${keyName}`}>
+                            <h4>{shoes.name}</h4>
+                            <img src={shoes.img} height={150} alt="shoe" />
+                        </Link>)
                 })}
             </div>
         </div>
